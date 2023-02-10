@@ -1,0 +1,8 @@
+::ng-deep mat-form-field > div.mat-mdc-form-field-subscript-wrapper.mat-mdc-form-field-bottom-align{
+    display: none !important;
+  }
+
+  .mat-mdc-form-field {
+    font-size: 14px;
+    width: 100%;
+  }

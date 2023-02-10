@@ -1,0 +1,61 @@
+<h1>Listado de Heroes</h1>
+<hr>
+
+<div class="d-flex justify-content-center align-items-center">
+  <div class="p-2 w-100">
+    <app-search-input (searchInput)="inputSearch($event)"></app-search-input>
+  </div>
+  <div class="p-2 flex-shrink-1">
+    <button mat-raised-button extended color="primary" routerLink="/heroe/nuevo">
+      <mat-icon>add</mat-icon>
+        Nuevo
+    </button>
+  </div>
+</div>
+
+<div *ngIf="cargando" class="d-flex justify-content-center mt-3">
+  <app-spinner [mensaje]="'Cargando ...'"></app-spinner>
+</div>
+
+<div *ngIf="!cargando">
+  <div *ngIf="dataSource.length === 0">
+    <app-alerta [mensaje]="'No hay registros'"></app-alerta>
+  </div>
+
+  <section *ngIf="dataSource.length !== 0" class="example-container mat-elevation-z8" tabindex="0">
+    <table aria-label="Tabla de Superheroes" mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef> Nombre </th>
+        <td mat-cell *matCellDef="let heroe"> {{heroe.nombre}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="poder">
+        <th mat-header-cell *matHeaderCellDef> Poder </th>
+        <td mat-cell *matCellDef="let heroe"> {{heroe.poder}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="estado">
+        <th mat-header-cell *matHeaderCellDef> Estado </th>
+        <td mat-cell *matCellDef="let heroe">
+          <mat-icon *ngIf="heroe.estado" class="text-success">thumb_up</mat-icon>
+          <mat-icon *ngIf="!heroe.estado" class="text-danger">thumb_down</mat-icon>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="opciones">
+        <th mat-header-cell *matHeaderCellDef colspan="2" class="text-center"> Opciones </th>
+        <td mat-cell *matCellDef="let heroe; let ind = index;" class="text-center">
+          <button mat-raised-button color="basic" [routerLink]="['/heroe', heroe.id]" class="me-1">
+            <mat-icon>edit</mat-icon>Editar
+          </button>
+          <button mat-raised-button color="warn" (click)="borrarHeroe(heroe, ind)" class="me-1">
+            <mat-icon>delete</mat-icon>Borrar
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns, sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </section>
+</div>

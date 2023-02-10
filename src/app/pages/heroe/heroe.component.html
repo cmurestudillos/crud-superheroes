@@ -1,0 +1,57 @@
+<h1 *ngIf="heroe.nombre">Heroe: <small>{{heroe.nombre}}</small> </h1>
+<h1 *ngIf="!heroe.nombre">Heroe: <span class="fs-2 text-muted">Nombre del heroe ...</span> </h1>
+<hr>
+
+<div class="d-flex justify-content-end align-items-center">
+  <div class="p-2 flex-shrink-1">
+    <button mat-raised-button extended color="primary" routerLink="/heroes">
+      <mat-icon>chevron_left</mat-icon>Volver
+    </button>
+  </div>
+</div>
+
+<form (ngSubmit)="guardar(formulario)" #formulario="ngForm">
+  <div class="d-flex flex-row m-5 justify-content-center">
+    <div class="p-2" *ngIf="heroe.id !== '' ">
+      <mat-form-field appearance="outline">
+        <mat-label>Id Firebase</mat-label>
+        <input matInput [(ngModel)]="heroe.id" name="id" id="id" disabled>
+        <mat-hint class="text-muted">Se genera automaticamente.</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <div class="p-2">
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre</mat-label>
+        <input matInput [(ngModel)]="heroe.nombre" name="nombre" required>
+      </mat-form-field>
+    </div>
+
+    <div class="p-2">
+      <mat-form-field appearance="outline">
+        <mat-label>Poder</mat-label>
+        <input matInput [(ngModel)]="heroe.poder" name="poder">
+      </mat-form-field>
+    </div>
+
+    <div class="p-2">
+      <button mat-raised-button extended color="accent" *ngIf="heroe.estado" (click)="heroe.estado = false" class="buttonAliveDead" >
+        <mat-icon>thumb_up</mat-icon>Vivo
+      </button>
+      <button mat-raised-button extended color="warn" *ngIf="!heroe.estado" (click)="heroe.estado = true" class="buttonAliveDead">
+        <mat-icon>thumb_down</mat-icon>Muerto
+      </button>
+    </div>
+  </div>
+  <hr>
+  <div class="d-flex justify-content-center align-items-center">
+    <div class="p-2">
+      <button mat-raised-button extended color="primary" type="submit" class="saveButton" [disabled]="!formulario.valid">
+        <mat-icon>save</mat-icon>Guardar
+      </button>
+    </div>
+  </div>
+</form>
+
+
+

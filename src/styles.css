@@ -1,0 +1,20 @@
+
+.mat-mdc-raised-button.mat-primary {
+  --mdc-protected-button-container-color: #0d6efd;
+  --mdc-protected-button-label-text-color: #fff;
+}
+
+.mat-mdc-raised-button.mat-basic {
+  --mdc-protected-button-container-color: #ffc107;
+  --mdc-protected-button-label-text-color: #000;
+}
+
+.mat-mdc-raised-button.mat-warn {
+  --mdc-protected-button-container-color: #dc3545;
+  --mdc-protected-button-label-text-color: #fff;
+}
+
+.mat-mdc-raised-button.mat-accent {
+  --mdc-protected-button-container-color: #198754;
+  --mdc-protected-button-label-text-color: #fff;
+}

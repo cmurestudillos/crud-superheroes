@@ -1,0 +1,14 @@
+.example-container {
+  height: calc(80vh - 80px);
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+}
+
+th{
+  font-weight: bold;
+}
+
+
